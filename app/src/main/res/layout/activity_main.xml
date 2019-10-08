@@ -9,37 +9,37 @@
 
     <Button
         android:id="@+id/btn_newuser"
-        android:layout_width="587dp"
-        android:layout_height="146dp"
+        android:layout_width="231dp"
+        android:layout_height="65dp"
         android:text="NEW USER ?"
-        android:textSize="50sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.752" />
 
     <Button
         android:id="@+id/btn_olduser"
-        android:layout_width="587dp"
-        android:layout_height="146dp"
+        android:layout_width="234dp"
+        android:layout_height="68dp"
         android:text="ALREADY A USER ?"
-        android:textSize="50sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.902" />
+        app:layout_constraintVertical_bias="0.93" />
 
     <TextView
         android:id="@+id/textview_welcome"
-        android:layout_width="969dp"
-        android:layout_height="259dp"
-        android:text="    WELCOME"
+        android:layout_width="363dp"
+        android:layout_height="121dp"
+        android:text="           WELCOME"
         android:textColor="#DFE1E6"
-        android:textSize="150sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -49,13 +49,14 @@
 
     <ImageView
         android:id="@+id/frontimg"
-        android:layout_width="1034dp"
-        android:layout_height="991dp"
+        android:layout_width="338dp"
+        android:layout_height="290dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.347"
+        app:layout_constraintVertical_bias="0.332"
         app:srcCompat="@drawable/passportind" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

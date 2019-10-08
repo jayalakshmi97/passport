@@ -29,7 +29,7 @@ public class Registrationform extends AppCompatActivity {
         btn_browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
 
 
             }
@@ -38,7 +38,7 @@ public class Registrationform extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,login.class);
+                Intent intent=new Intent(Registrationform.this,login.class);
                 startActivity(intent);
             }
         });
