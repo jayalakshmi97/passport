@@ -21,6 +21,6 @@ public class login extends AppCompatActivity {
         uname=findViewById(R.id.edittext_username);
         pswd=findViewById(R.id.edittext_psw);
         login=findViewById(R.id.btn_login);
-        
+
     }
 }
