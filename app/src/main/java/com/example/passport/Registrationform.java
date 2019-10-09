@@ -62,30 +62,18 @@ Bitmap bitmap;
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 n = name.getText().toString();
                 d = dob.getText().toString();
                 ad = address.getText().toString();
                 aa = aadharno.getText().toString();
                 u = username.getText().toString();
                 p = pswd.getText().toString();
-
                 //check empty field
 
                 if (n.isEmpty() || d.isEmpty() || ad.isEmpty() || aa.isEmpty() || u.isEmpty() || p.isEmpty()) {
                     Toast.makeText(Registrationform.this, "Empty Field exist", Toast.LENGTH_SHORT).show();
-                    if (n.isEmpty()) {
-                        name.setError("Enter name");
-                    } else if (d.isEmpty()) {
-                        dob.setError("Enter dob");
-                    } else if (ad.isEmpty()) {
-                        address.setError("Enter Address");
-                    } else if (aa.isEmpty()) {
-                        aadharno.setError("Enter Aadhar no");
-                    } else if (u.isEmpty()) {
-                        username.setError("Enter username");
-                    } else {
-                        pswd.setError("Enter password");
-                    }
+
                 } else {
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/registration.php",
@@ -96,7 +84,12 @@ Bitmap bitmap;
 
 
                                     Toast.makeText(Registrationform.this, response, Toast.LENGTH_LONG).show();
+if(response.contains("success"))
+{
+    Intent intent = new Intent(Registrationform.this, login.class);
 
+    startActivity(intent);
+}
                                 }
                             },
                             new Response.ErrorListener() {
@@ -117,7 +110,7 @@ Bitmap bitmap;
                             params.put("username", u);
                             params.put("pswd", p);
                             String uploadImage = getStringImage(bitmap);
-                            params.put("image",uploadImage);
+                           params.put("image",uploadImage);
 
 //returning parameter
                             return params;
@@ -131,9 +124,7 @@ Bitmap bitmap;
                     // Toast.makeText(Registrationform.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
                     //Move to login page
-                    Intent intent = new Intent(Registrationform.this, login.class);
 
-                    startActivity(intent);
                 }
             }
         });
