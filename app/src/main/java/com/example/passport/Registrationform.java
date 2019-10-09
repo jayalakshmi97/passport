@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,16 +75,16 @@ public class Registrationform extends AppCompatActivity {
                         pswd.setError("Enter password");
                     }
                 }
-                else{
+                else {
 
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST,"https://gressorial-parts.000webhostapp.com/login.php",
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/login.php",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
 //If we are getting success from server
 
 
-                                    Toast.makeText(MainActivity.this,response,Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Registrationform.this, response, Toast.LENGTH_LONG).show();
 
                                 }
                             },
@@ -88,38 +94,34 @@ public class Registrationform extends AppCompatActivity {
 //You can handle error here if you want
                                 }
 
-                            }){
+                            }) {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String,String> params = new HashMap<>();
+                            Map<String, String> params = new HashMap<>();
 //Adding parameters to request
-                            params.put("name",n);
-                            params.put("dob",d);
-                            params.put("address",ad);
-                            params.put("aadharno",aa);
-                            params.put("username",u);
-                            params.put("pswd",p);
+                            params.put("name", n);
+                            params.put("dob", d);
+                            params.put("address", ad);
+                            params.put("aadharno", aa);
+                            params.put("username", u);
+                            params.put("pswd", p);
 
 
 //returning parameter
                             return params;
+                        }
+
+                    };
 
 
-
-
-
-
-
-
-
-
-                    Toast.makeText(Registrationform.this,"Registration Successful",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(Registrationform.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
                     //Move to login page
-                    Intent intent=new Intent(Registrationform.this,login.class);
-                    startActivity(intent);
+                    Intent intent = new Intent(Registrationform.this, login.class);
 
+                    startActivity(intent);
                 }
+
 
 
             }
