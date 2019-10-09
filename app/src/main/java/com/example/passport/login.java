@@ -3,6 +3,8 @@ package com.example.passport;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,21 +39,22 @@ public class login<stringRequest> extends AppCompatActivity {
         pswd = findViewById(R.id.edittext_psw);
         login = findViewById(R.id.btn_login);
         //to check whether password or username field is empty
-        if (uname.getText().toString().isEmpty() || pswd.getText().toString().isEmpty()) {
-            Toast.makeText(login.this, "Empty field exist", Toast.LENGTH_LONG).show();
-            if (uname.getText().toString().isEmpty()) {
-                uname.setError("Type your username");
-            } else {
-                pswd.setError("Type your password");
-            }
-        } else {
-            Toast.makeText(login.this, "Login successfull", Toast.LENGTH_LONG).show();
-            uname.setText("null");
-            pswd.setText("null");
-            StringRequest stringRequest = new StringRequest(Request.Method.POST,"https://gressorial-parts.000webhostapp.com/login.php",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (uname.getText().toString().isEmpty() || pswd.getText().toString().isEmpty()) {
+                    Toast.makeText(login.this, "Empty field exist", Toast.LENGTH_LONG).show();
+                    if (uname.getText().toString().isEmpty()) {
+                        uname.setError("Type your username");
+                    } else {
+                        pswd.setError("Type your password");
+                    }
+                } else {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/login.php",
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
 //If we are getting success from server
 
 
@@ -67,36 +70,41 @@ public class login<stringRequest> extends AppCompatActivity {
                                 e.printStackTrace();
                             }*/
 
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
 //You can handle error here if you want
-                        }
+                                }
 
-                    }){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<>();
+                            }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<>();
 //Adding parameters to request
-params.put("username",uname.getText().toString());
-params.put("pswd",pswd.getText().toString());
+                            params.put("username", uname.getText().toString());
+                            params.put("pswd", pswd.getText().toString());
 
 //returning parameter
-                    return params;
-                }
-            };
+                            return params;
+                        }
+                    };
 
 //Adding the string request to the queue
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(stringRequest);
+                    RequestQueue requestQueue = Volley.newRequestQueue(login.this);
+                    requestQueue.add(stringRequest);
+                    Toast.makeText(login.this, "Login success", Toast.LENGTH_LONG).show();
+                    uname.setText("null");
+                    pswd.setText("null");
 
+                }
+            }
+        });
 
         }
     }
 
-}
 
 
 
