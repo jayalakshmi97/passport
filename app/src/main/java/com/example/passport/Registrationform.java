@@ -68,6 +68,7 @@ public class Registrationform extends AppCompatActivity {
                 }
                 else{
 
+
                 }
 
                 //Move to login page
