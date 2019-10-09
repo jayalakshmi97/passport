@@ -8,6 +8,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.Map;
+
 public class login extends AppCompatActivity {
     TextView username,password;
     EditText uname,pswd;
@@ -40,6 +49,28 @@ public class login extends AppCompatActivity {
             Toast.makeText(login.this,"Login successfull",Toast.LENGTH_LONG).show();
             uname.setText("null");
             pswd.setText("null");
+            // Instantiate the RequestQueue.
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url ="http://www.google.com";
+
+// Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Display the first 500 characters of the response string.
+                          //  textView.setText("Response is: "+ response.substring(0,500));
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //textView.setText("That didn't work!");
+                }
+            });
+                @Override
+                        protected Map<String>
+// Add the request to the RequestQueue.
+            queue.add(stringRequest);
         }
 
     }
