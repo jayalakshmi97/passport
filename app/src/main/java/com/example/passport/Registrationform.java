@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Registrationform extends AppCompatActivity {
     EditText name,dob,address,aadharno,username,pswd;
     Button btn_browse,btn_submit;
@@ -62,11 +65,44 @@ public class Registrationform extends AppCompatActivity {
                         aadharno.setError("Enter Aadhar no");
                     }else if (u.isEmpty()){
                         username.setError("Enter username");
-                    }else if (p.isEmpty()){
+                    }else {
                         pswd.setError("Enter password");
                     }
                 }
                 else{
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST,"https://gressorial-parts.000webhostapp.com/login.php",
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+//If we are getting success from server
+
+
+                                    Toast.makeText(MainActivity.this,response,Toast.LENGTH_LONG).show();
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+//You can handle error here if you want
+                                }
+
+                            }){
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String,String> params = new HashMap<>();
+//Adding parameters to request
+                            params.put("name",n);
+                            params.put("dob",d);
+                            params.put("address",ad);
+                            params.put("aadharno",aa);
+                            params.put("username",u);
+                            params.put("pswd",p);
+
+
+//returning parameter
+                            return params;
 
 
 
@@ -78,7 +114,7 @@ public class Registrationform extends AppCompatActivity {
 
 
                     Toast.makeText(Registrationform.this,"Registration Successful",Toast.LENGTH_SHORT).show();
-                    
+
                     //Move to login page
                     Intent intent=new Intent(Registrationform.this,login.class);
                     startActivity(intent);
