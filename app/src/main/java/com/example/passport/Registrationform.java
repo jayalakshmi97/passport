@@ -77,7 +77,7 @@ public class Registrationform extends AppCompatActivity {
                 }
                 else {
 
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/login.php",
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/registration.php",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
