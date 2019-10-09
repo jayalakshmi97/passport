@@ -51,6 +51,7 @@
         android:id="@+id/frontimg"
         android:layout_width="338dp"
         android:layout_height="290dp"
+        android:background="#00C46464"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
