@@ -69,11 +69,23 @@ public class Registrationform extends AppCompatActivity {
                 else{
 
 
+
+
+
+
+
+
+
+
+                    Toast.makeText(Registrationform.this,"Registration Successful",Toast.LENGTH_SHORT).show();
+                    
+                    //Move to login page
+                    Intent intent=new Intent(Registrationform.this,login.class);
+                    startActivity(intent);
+
                 }
 
-                //Move to login page
-                Intent intent=new Intent(Registrationform.this,login.class);
-                startActivity(intent);
+
             }
         });
     }
