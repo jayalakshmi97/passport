@@ -74,6 +74,7 @@ Bitmap bitmap;
                 if (n.isEmpty() || d.isEmpty() || ad.isEmpty() || aa.isEmpty() || u.isEmpty() || p.isEmpty()) {
                     Toast.makeText(Registrationform.this, "Empty Field exist", Toast.LENGTH_SHORT).show();
 
+
                 } else {
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/registration.php",
