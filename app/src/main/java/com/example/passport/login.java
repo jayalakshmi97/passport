@@ -57,7 +57,7 @@ public class login<stringRequest> extends AppCompatActivity {
                                 public void onResponse(String response) {
 //If we are getting success from server
 
-
+                                    Toast.makeText(login.this,response,Toast.LENGTH_LONG).show();
                             /*try {
                                 JSONArray jsonArray=new JSONArray(response);
                                 for(int i=0;i<jsonArray.length();i++){
@@ -94,9 +94,9 @@ public class login<stringRequest> extends AppCompatActivity {
 //Adding the string request to the queue
                     RequestQueue requestQueue = Volley.newRequestQueue(login.this);
                     requestQueue.add(stringRequest);
-                    Toast.makeText(login.this, "Login success", Toast.LENGTH_LONG).show();
-                    uname.setText("null");
-                    pswd.setText("null");
+
+                    uname.setText(null);
+                    pswd.setText(null);
 
                 }
             }
