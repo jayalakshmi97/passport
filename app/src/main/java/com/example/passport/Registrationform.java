@@ -13,6 +13,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class Registrationform extends AppCompatActivity {
     EditText name, dob, address, aadharno, username, pswd;
     Button btn_browse, btn_submit;
     String n, d, ad, aa, u, p;
+    ImageView imageView;
     private Uri filePath;
 Bitmap bitmap;
     @Override
@@ -33,6 +35,7 @@ Bitmap bitmap;
         aadharno = findViewById(R.id.aadharno);
         username = findViewById(R.id.username);
         pswd = findViewById(R.id.pswd);
+        imageView=findViewById(R.id.imageView);
 
         btn_browse = findViewById(R.id.btn_browse);
         btn_submit = findViewById(R.id.btn_submit);
@@ -64,14 +67,14 @@ Bitmap bitmap;
                     Toast.makeText(Registrationform.this, "Empty Field exist", Toast.LENGTH_SHORT).show();
 
 
-                } else {
+                } //else {
 
 
                     // Toast.makeText(Registrationform.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
                     //Move to login page
 
-                }
+               // }
             }
         });
     }
@@ -135,41 +138,6 @@ Bitmap bitmap;
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
-   /* private void uploadImage() {
-        class UploadImage extends AsyncTask<Bitmap, Void, String> {
 
-            ProgressDialog loading;
-            RequestHandler rh = new RequestHandler();
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(Registrationform.this, "Uploading...", null, true, true);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(Bitmap... params) {
-                Bitmap bitmap = params[0];
-                String uploadImage = getStringImage(bitmap);
-
-                HashMap<String, String> data = new HashMap<>();
-
-                data.put("image", uploadImage);
-                String result = rh.sendPostRequest("", data);
-
-                return result;
-            }
-        }
-
-        UploadImage ui = new UploadImage();
-        ui.execute(bitmap);
-    }*/
     }
 
