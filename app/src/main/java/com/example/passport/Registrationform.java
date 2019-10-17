@@ -132,7 +132,7 @@ Bitmap bitmap;
                 data.put("username",u);
                 data.put("pswd",p);
 
-                String result = rh.sendPostRequest("",data);
+                String result = rh.sendPostRequest("https://gressorial-parts.000webhostapp.com/registration.php",data);
 
                 return result;
             }
