@@ -77,51 +77,7 @@ Bitmap bitmap;
 
                 } else {
 
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/registration.php",
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-//If we are getting success from server
 
-
-                                    Toast.makeText(Registrationform.this, response, Toast.LENGTH_LONG).show();
-if(response.contains("success"))
-{
-    Intent intent = new Intent(Registrationform.this, login.class);
-
-    startActivity(intent);
-}
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-//You can handle error here if you want
-                                }
-
-                            }) {
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> params = new HashMap<>();
-//Adding parameters to request
-                            params.put("name", n);
-                            params.put("dob", d);
-                            params.put("address", ad);
-                            params.put("aadharno", aa);
-                            params.put("username", u);
-                            params.put("pswd", p);
-                            String uploadImage = getStringImage(bitmap);
-                           params.put("image",uploadImage);
-
-//returning parameter
-                            return params;
-                        }
-
-                    };
-
-//Adding the string request to the queue
-                    RequestQueue requestQueue = Volley.newRequestQueue(Registrationform.this);
-                    requestQueue.add(stringRequest);
                     // Toast.makeText(Registrationform.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
                     //Move to login page
@@ -145,6 +101,42 @@ if(response.contains("success"))
                 e.printStackTrace();
             }
         }
+    }
+    private void uploadImage(){
+        class UploadImage extends AsyncTask<Bitmap,Void,String>{
+
+            ProgressDialog loading;
+            RequestHandler rh = new RequestHandler();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Registrationform.this, "Uploading...", null,true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Bitmap... params) {
+                Bitmap bitmap = params[0];
+                String uploadImage = getStringImage(bitmap);
+
+                HashMap<String,String> data = new HashMap<>();
+
+                data.put("image", uploadImage);
+                String result = rh.sendPostRequest("",data);
+
+                return result;
+            }
+        }
+
+        UploadImage ui = new UploadImage();
+        ui.execute(bitmap);
     }
 
     public String getStringImage(Bitmap bmp) {
