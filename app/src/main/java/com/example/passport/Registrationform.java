@@ -67,7 +67,11 @@ Bitmap bitmap;
                     Toast.makeText(Registrationform.this, "Empty Field exist", Toast.LENGTH_SHORT).show();
 
 
-                } //else {
+                }
+                else
+                {
+                    uploadImage();
+                }
 
 
                     // Toast.makeText(Registrationform.this, "Registration Successful", Toast.LENGTH_SHORT).show();
@@ -88,7 +92,7 @@ Bitmap bitmap;
             filePath = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-               // imageView.setImageBitmap(bitmap);
+               imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -121,6 +125,13 @@ Bitmap bitmap;
                 HashMap<String,String> data = new HashMap<>();
 
                 data.put("image", uploadImage);
+                data.put("name",n);
+                data.put("dob",d);
+                data.put("address",ad);
+                data.put("aadharno",aa);
+                data.put("username",u);
+                data.put("pswd",p);
+
                 String result = rh.sendPostRequest("",data);
 
                 return result;
