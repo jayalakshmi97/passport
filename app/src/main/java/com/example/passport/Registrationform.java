@@ -13,6 +13,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,6 +33,7 @@ public class Registrationform extends AppCompatActivity {
     EditText name, dob, address, aadharno, username, pswd;
     Button btn_browse, btn_submit;
     String n, d, ad, aa, u, p;
+    ImageView imageView;
     private Uri filePath;
 Bitmap bitmap;
     @Override
@@ -44,6 +46,7 @@ Bitmap bitmap;
         aadharno = findViewById(R.id.aadharno);
         username = findViewById(R.id.username);
         pswd = findViewById(R.id.pswd);
+        imageView=findViewById(R.id.imageView);
 
         btn_browse = findViewById(R.id.btn_browse);
         btn_submit = findViewById(R.id.btn_submit);
