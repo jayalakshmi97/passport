@@ -78,14 +78,14 @@ Bitmap bitmap;
                     Toast.makeText(Registrationform.this, "Empty Field exist", Toast.LENGTH_SHORT).show();
 
 
-                } else {
+                } //else {
 
 
                     // Toast.makeText(Registrationform.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
                     //Move to login page
 
-                }
+               // }
             }
         });
     }
@@ -149,41 +149,6 @@ Bitmap bitmap;
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
-   /* private void uploadImage() {
-        class UploadImage extends AsyncTask<Bitmap, Void, String> {
 
-            ProgressDialog loading;
-            RequestHandler rh = new RequestHandler();
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(Registrationform.this, "Uploading...", null, true, true);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(Bitmap... params) {
-                Bitmap bitmap = params[0];
-                String uploadImage = getStringImage(bitmap);
-
-                HashMap<String, String> data = new HashMap<>();
-
-                data.put("image", uploadImage);
-                String result = rh.sendPostRequest("", data);
-
-                return result;
-            }
-        }
-
-        UploadImage ui = new UploadImage();
-        ui.execute(bitmap);
-    }*/
     }
 
