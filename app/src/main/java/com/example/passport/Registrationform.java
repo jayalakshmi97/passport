@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -68,9 +69,13 @@ Bitmap bitmap;
 
 
                 }
-                else
+                else if(!(imageView.getDrawable() == null))
                 {
                     uploadImage();
+                }
+                else
+                {
+                    Toast.makeText(Registrationform.this,"Select image",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -114,6 +119,7 @@ Bitmap bitmap;
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
+
                 Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
             }
 
