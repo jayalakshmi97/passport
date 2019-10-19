@@ -57,23 +57,27 @@ public class login<stringRequest> extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
 //If we are getting success from server
-
+String no;
                                     Toast.makeText(login.this,response,Toast.LENGTH_LONG).show();
 
-   if (response.equals("success"))
-   {
-       /*try {
+
+       try {
                                 JSONArray jsonArray=new JSONArray(response);
                                 for(int i=0;i<jsonArray.length();i++){
                                     JSONObject json_obj = jsonArray.getJSONObject(i);
-                                    latitude = json_obj.getString("latitude");
-                                    longitude=json_obj.getString("longitude");
-                                    Toast.makeText(MapsActivity.this,latitude,Toast.LENGTH_SHORT).show();
+                                    no = json_obj.getString("passportnumber");
+                                   // longitude=json_obj.getString("longitude");
+                                    Toast.makeText(login.this,no,Toast.LENGTH_SHORT).show();
+                                    if (response.contains("success")) {
+                                        Intent intent = new Intent(login.this, qr.class);
+                                        intent.putExtra("pass",no);
+                                        startActivity(intent);
+                                    }
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            }*/
-   }
+                            }
+
 
                                 }
                             },
