@@ -2,6 +2,7 @@ package com.example.passport;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,14 +44,14 @@ public class login<stringRequest> extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (uname.getText().toString().isEmpty() || pswd.getText().toString().isEmpty()) {
-                    Toast.makeText(login.this, "Empty field exist", Toast.LENGTH_LONG).show();
-                    if (uname.getText().toString().isEmpty()) {
-                        uname.setError("Type your username");
-                    } else {
-                        pswd.setError("Type your password");
-                    }
-                } else {
+                //if (uname.getText().toString().isEmpty() || pswd.getText().toString().isEmpty()) {
+//                    Toast.makeText(login.this, "Empty field exist", Toast.LENGTH_LONG).show();
+//                    if (uname.getText().toString().isEmpty()) {
+//                        uname.setError("Type your username");
+//                    } else {
+//                        pswd.setError("Type your password");
+//                    }
+//                } else {
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/login.php",
                             new Response.Listener<String>() {
                                 @Override
@@ -58,7 +59,10 @@ public class login<stringRequest> extends AppCompatActivity {
 //If we are getting success from server
 
                                     Toast.makeText(login.this,response,Toast.LENGTH_LONG).show();
-                            /*try {
+
+   if (response.equals("success"))
+   {
+       /*try {
                                 JSONArray jsonArray=new JSONArray(response);
                                 for(int i=0;i<jsonArray.length();i++){
                                     JSONObject json_obj = jsonArray.getJSONObject(i);
@@ -69,6 +73,7 @@ public class login<stringRequest> extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }*/
+   }
 
                                 }
                             },
@@ -95,11 +100,8 @@ public class login<stringRequest> extends AppCompatActivity {
                     RequestQueue requestQueue = Volley.newRequestQueue(login.this);
                     requestQueue.add(stringRequest);
 
-                    uname.setText(null);
-                    pswd.setText(null);
-
                 }
-            }
+
         });
 
         }
