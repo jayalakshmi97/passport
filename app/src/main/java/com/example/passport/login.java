@@ -2,11 +2,13 @@ package com.example.passport;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ public class login<stringRequest> extends AppCompatActivity {
     TextView username, password;
     EditText uname, pswd;
     Button login;
-    String u,p;
+    String no,status,namee,dobb,addresss,aadharnoo,casestatuss,accountstatuss,img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,36 +47,71 @@ public class login<stringRequest> extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-                if (uname.getText().toString().isEmpty() || pswd.getText().toString().isEmpty()) {
-                    Toast.makeText(login.this, "Empty field exist", Toast.LENGTH_LONG).show();
-                    if (uname.getText().toString().isEmpty()) {
-                        uname.setError("Type your username");
-                    } else {
-                        pswd.setError("Type your password");
-                    }
-                }
-                else {
+                //if (uname.getText().toString().isEmpty() || pswd.getText().toString().isEmpty()) {
+//                    Toast.makeText(login.this, "Empty field exist", Toast.LENGTH_LONG).show();
+//                    if (uname.getText().toString().isEmpty()) {
+//                        uname.setError("Type your username");
+//                    } else {
+//                        pswd.setError("Type your password");
+//                    }
+//                } else {
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/login.php",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
 //If we are getting success from server
 
+
                                     Toast.makeText(login.this,response,Toast.LENGTH_LONG).show();
-                            /*try {
+
+
+       try {
+
+
                                 JSONArray jsonArray=new JSONArray(response);
                                 for(int i=0;i<jsonArray.length();i++){
                                     JSONObject json_obj = jsonArray.getJSONObject(i);
-                                    latitude = json_obj.getString("latitude");
-                                    longitude=json_obj.getString("longitude");
-                                    Toast.makeText(MapsActivity.this,latitude,Toast.LENGTH_SHORT).show();
+                                    no = json_obj.getString("passportnumber");
+                                    status=json_obj.getString("login_status");
+                                    namee=json_obj.getString("name");
+                                    dobb=json_obj.getString("dob");
+                                    addresss=json_obj.getString("address");
+                                    aadharnoo=json_obj.getString("aadharno");
+                                    casestatuss=json_obj.getString("casestatus");
+                                    accountstatuss=json_obj.getString("accountstatus");
+                                    img=json_obj.getString("image");
+
+
+
+                                // longitude=json_obj.getString("longitude");
+                                    Toast.makeText(login.this,no,Toast.LENGTH_SHORT).show();
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            }*/
+                            }
+
+                                    if (status.equals("1")) {
+                                        Intent intent = new Intent(login.this, qr.class);
+                                         intent.putExtra("pass",no);
+
+                                        intent.putExtra("login",status);
+
+                                        intent.putExtra("name",namee);
+
+                                        intent.putExtra("dob",dobb);
+
+                                        intent.putExtra("address",addresss);
+
+                                        intent.putExtra("aadharno",aadharnoo);
+                                        intent.putExtra("image",img);
+
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(login.this,"Account Blocked",Toast.LENGTH_LONG).show();
+                                    }
 
                                 }
                             },
@@ -89,11 +126,8 @@ public class login<stringRequest> extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> params = new HashMap<>();
 //Adding parameters to request
-                            u=uname.getText().toString();
-                            p=pswd.getText().toString();
-
-                            params.put("username", u);
-                            params.put("pswd", p);
+                            params.put("username", uname.getText().toString());
+                            params.put("pswd", pswd.getText().toString());
 
 //returning parameter
                             return params;
@@ -104,11 +138,8 @@ public class login<stringRequest> extends AppCompatActivity {
                     RequestQueue requestQueue = Volley.newRequestQueue(login.this);
                     requestQueue.add(stringRequest);
 
-                    uname.setText(null);
-                    pswd.setText(null);
-
                 }
-            }
+
         });
 
         }
