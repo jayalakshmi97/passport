@@ -29,6 +29,8 @@ public class login<stringRequest> extends AppCompatActivity {
     TextView username, password;
     EditText uname, pswd;
     Button login;
+    String u,p;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,9 @@ public class login<stringRequest> extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 if (uname.getText().toString().isEmpty() || pswd.getText().toString().isEmpty()) {
                     Toast.makeText(login.this, "Empty field exist", Toast.LENGTH_LONG).show();
                     if (uname.getText().toString().isEmpty()) {
@@ -50,7 +55,8 @@ public class login<stringRequest> extends AppCompatActivity {
                     } else {
                         pswd.setError("Type your password");
                     }
-                } else {
+                }
+                else {
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/login.php",
                             new Response.Listener<String>() {
                                 @Override
@@ -83,8 +89,11 @@ public class login<stringRequest> extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> params = new HashMap<>();
 //Adding parameters to request
-                            params.put("username", uname.getText().toString());
-                            params.put("pswd", pswd.getText().toString());
+                            u=uname.getText().toString();
+                            p=pswd.getText().toString();
+
+                            params.put("username", u);
+                            params.put("pswd", p);
 
 //returning parameter
                             return params;
