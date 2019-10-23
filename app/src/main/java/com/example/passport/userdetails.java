@@ -9,13 +9,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class userdetails extends AppCompatActivity {
     ImageView imageView;
     TextView psno,nme,dobb,addr,aadhr;
     Button btn_qr;
 
-    String passno,name,dob,address,aadharno,casestatus,accountstatus,image;
-    Intent intent;
+    String p,n,d,ad,aa,im;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,18 +26,29 @@ public class userdetails extends AppCompatActivity {
         imageView=findViewById(R.id.imageView);
         psno=findViewById(R.id.passno);
         nme=findViewById(R.id.name);
-        dobb=findViewById(R.id.dob);
+        dobb=findViewById(R.id.dobb);
         addr=findViewById(R.id.address);
         aadhr=findViewById(R.id.aadharno);
         btn_qr=findViewById(R.id.qr);
-        qr q=new qr();
-        q.intent=getIntent();
-        passno=q.intent.getStringExtra("");
-        psno.setText(passno);
-        nme.setText(name);
-        dobb.setText(dob);
-        addr.setText(address);
-        aadhr.setText(aadharno);
+
+        i=getIntent();
+
+        p= i.getStringExtra("pass");
+        n=i.getStringExtra("name");
+        d=i.getStringExtra("dob");
+        ad=i.getStringExtra("address");
+        aa=i.getStringExtra("aadharno");
+        im=i.getStringExtra("image");
+
+
+
+        psno.setText(p);
+        nme.setText(n);
+        dobb.setText(d);
+        addr.setText(ad);
+        aadhr.setText(aa);
+
+        Picasso.with(this).load(im).into(imageView);
 
 
 

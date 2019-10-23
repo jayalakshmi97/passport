@@ -29,16 +29,16 @@ import androidmads.library.qrgenearator.QRGSaver;
 
 public class qr extends AppCompatActivity {
     String TAG = "GenerateQRCode";
-    EditText edtValue;
     ImageView qrImage;
-    Button start, save;
-    String inputValue;
+    Button start;
     String savePath = Environment.getExternalStorageDirectory().getPath() + "/PassportQr/";
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
     String passno,name,dob,address,aadharno,casestatus,accountstatus,image;
      Intent intent;
      TextView passnumber,namee,dobb,addresss,aadharnoo,casestatuss,accountstatuss,img;
+     String p,n,d,ad,aa,im;
+
 
 
     @Override
@@ -109,13 +109,13 @@ public class qr extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.user:
                 Intent i=new Intent(qr.this,userdetails.class);
-//                i.putExtra("pass");
-//                i.putExtra("name");
-//                i.putExtra("dob");
-//                i.putExtra("address");
-//                i.putExtra("aadharno");
-//                i.putExtra("image")
-//                startActivity(i);
+                i.putExtra("pass",p);
+                i.putExtra("name",n);
+                i.putExtra("dob",d);
+                i.putExtra("address",ad);
+                i.putExtra("aadharno",aa);
+                i.putExtra("image",im);
+                startActivity(i);
                 return true;
 
             default:

@@ -104,6 +104,7 @@ public class login<stringRequest> extends AppCompatActivity {
                                         intent.putExtra("address",addresss);
 
                                         intent.putExtra("aadharno",aadharnoo);
+
                                         intent.putExtra("image",img);
 
                                         startActivity(intent);
