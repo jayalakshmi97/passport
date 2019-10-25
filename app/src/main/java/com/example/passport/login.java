@@ -55,6 +55,7 @@ public class login<stringRequest> extends AppCompatActivity {
 //                        pswd.setError("Type your password");
 //                    }
 //                } else {
+            //    Toast.makeText(login.this,"hi",Toast.LENGTH_SHORT).show();
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/login.php",
                             new Response.Listener<String>() {
                                 @Override
@@ -62,7 +63,7 @@ public class login<stringRequest> extends AppCompatActivity {
 //If we are getting success from server
 
 
-                                    Toast.makeText(login.this,response,Toast.LENGTH_LONG).show();
+                                //    Toast.makeText(login.this,response,Toast.LENGTH_LONG).show();
 
 
        try {
@@ -84,7 +85,7 @@ public class login<stringRequest> extends AppCompatActivity {
 
 
                                 // longitude=json_obj.getString("longitude");
-                                    Toast.makeText(login.this,no,Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(login.this,no,Toast.LENGTH_SHORT).show();
 
                                 }
                             } catch (JSONException e) {

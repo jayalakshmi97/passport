@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".userdetails"></activity>
-        <activity android:name=".qr" />
+
         <activity android:name=".login" />
         <activity android:name=".Registrationform" />
         <activity android:name=".MainActivity">
@@ -23,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".qr"/>
     </application>
 
 </manifest>
