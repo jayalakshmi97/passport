@@ -40,7 +40,7 @@ public class qr extends AppCompatActivity {
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
     String passno, name, dob, address, aadharno, casestatus, accountstatus, image;
-    Intent intent;
+   Intent i;
     TextView passnumber, namee, dobb, addresss, aadharnoo, casestatuss, accountstatuss, img;
     String p, n, d, ad, aa, im;
 
@@ -50,14 +50,14 @@ public class qr extends AppCompatActivity {
         setContentView(R.layout.activity_qr);
         qrImage = findViewById(R.id.QRImage);
         passnumber = findViewById(R.id.textview_pno);
-        intent = getIntent();
-        passno = intent.getStringExtra("pass");
-        name = intent.getStringExtra("name");
-        dob = intent.getStringExtra("dob");
-        address = intent.getStringExtra("address");
-        aadharno = intent.getStringExtra("aadharno");
-        image = intent.getStringExtra("image");
-        passnumber.setText(passno);
+       i = getIntent();
+       passno = i.getStringExtra("pass");
+//        name = i.getStringExtra("name");
+//        dob = i.getStringExtra("dob");
+//        address = i.getStringExtra("address");
+//        aadharno = i.getStringExtra("aadharno");
+//        image = i.getStringExtra("image");
+//        passnumber.setText(passno);
 
 
         WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -145,36 +145,36 @@ public class qr extends AppCompatActivity {
     }
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.user, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.user:
-                Intent i = new Intent(qr.this, userdetails.class);
-                i.putExtra("pass", passno);
-                i.putExtra("name", name);
-                i.putExtra("dob", dob);
-                i.putExtra("address", address);
-                i.putExtra("aadharno", aadharno);
-                i.putExtra("image", image);
-                startActivity(i);
-                break;
-
-            case R.id.logout:
-                Intent intent = new Intent(qr.this, MainActivity.class);
-                startActivity(intent);
-
-break;
-            default:
-                return super.onOptionsItemSelected(item);
-
-//respond to menu item selection
-        }
-
-        return true;
-    }
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.user, menu);
+//        return true;
+//    }
+//
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.user:
+//                Intent i = new Intent(qr.this, userdetails.class);
+//                i.putExtra("pass", passno);
+//                i.putExtra("name", name);
+//                i.putExtra("dob", dob);
+//                i.putExtra("address", address);
+//                i.putExtra("aadharno", aadharno);
+//                i.putExtra("image", image);
+//                startActivity(i);
+//                break;
+//
+//            case R.id.logout:
+//                Intent intent = new Intent(qr.this, MainActivity.class);
+//                startActivity(intent);
+//
+//break;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+////respond to menu item selection
+//        }
+//
+//        return true;
+//    }
 }

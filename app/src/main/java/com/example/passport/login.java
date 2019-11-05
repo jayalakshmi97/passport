@@ -93,7 +93,7 @@ public class login<stringRequest> extends AppCompatActivity {
                             }
 
                                     if (status.equals("1")) {
-                                        Intent intent = new Intent(login.this, qr.class);
+                                        Intent intent = new Intent(login.this, userdetails.class);
                                          intent.putExtra("pass",no);
 
                                         intent.putExtra("login",status);

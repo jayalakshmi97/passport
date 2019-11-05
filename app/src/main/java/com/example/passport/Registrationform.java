@@ -15,14 +15,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+
 public class Registrationform extends AppCompatActivity {
     EditText name, dob, address, aadharno, username, pswd;
     Button btn_browse, btn_submit;
     String n, d, ad, aa, u, p;
     ImageView imageView;
+    String no;
     private Uri filePath;
 Bitmap bitmap;
     @Override
@@ -118,6 +134,78 @@ Bitmap bitmap;
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
+                try {
+
+
+                    JSONArray jsonArray=new JSONArray(s);
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject json_obj = jsonArray.getJSONObject(i);
+                        no = json_obj.getString("passportnumber");
+
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gressorial-parts.000webhostapp.com/sms.php",
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+//If we are getting success from server
+
+
+                                          Toast.makeText(Registrationform.this,response,Toast.LENGTH_LONG).show();
+
+
+                                        try {
+
+
+                                            JSONArray jsonArray=new JSONArray(response);
+                                            for(int i=0;i<jsonArray.length();i++){
+                                                JSONObject json_obj = jsonArray.getJSONObject(i);
+
+
+
+
+                                                // longitude=json_obj.getString("longitude");
+                                                //        Toast.makeText(login.this,no,Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+//You can handle error here if you want
+                                    }
+
+                                }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> params = new HashMap<>();
+//Adding parameters to request
+                                params.put("passport",no);
+                                params.put("phone",aa);
+
+//returning parameter
+                                return params;
+                            }
+                        };
+
+//Adding the string request to the queue
+                        RequestQueue requestQueue = Volley.newRequestQueue(Registrationform.this);
+                        requestQueue.add(stringRequest);
+
+
+
+                        // longitude=json_obj.getString("longitude");
+                        //        Toast.makeText(login.this,no,Toast.LENGTH_SHORT).show();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
             }
@@ -154,6 +242,7 @@ Bitmap bitmap;
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
+
 
     }
 
